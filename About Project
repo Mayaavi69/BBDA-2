@@ -1,0 +1,69 @@
+Investment Management: An ERD illustrating how customers interact with investment portfolios, including stocks, bonds, mutual funds, and transaction history.
+
+Here is a simple Entity-Relationship Diagram (ERD) for an Investment Management System. This ERD will cover the basic entities and their relationships within the system:
+
+Entities:
+Customer
+
+CustomerID (Primary Key)
+Name
+Email
+ContactNumber
+Address
+Portfolio
+
+PortfolioID (Primary Key)
+CustomerID (Foreign Key)
+PortfolioName
+CreationDate
+Investment
+
+InvestmentID (Primary Key)
+PortfolioID (Foreign Key)
+InvestmentType (e.g., Stock, Bond, Mutual Fund)
+AmountInvested
+DateOfInvestment
+Transaction
+
+TransactionID (Primary Key)
+InvestmentID (Foreign Key)
+TransactionType (e.g., Buy, Sell)
+TransactionDate
+Quantity
+PricePerUnit
+FinancialProduct
+
+ProductID (Primary Key)
+ProductName
+ProductType (e.g., Equity, Debt, Hybrid)
+RiskLevel
+Relationships:
+A Customer can have multiple Portfolios (1 to many).
+Each Portfolio belongs to one Customer (many to 1).
+A Portfolio can contain multiple Investments (1 to many).
+Each Investment is part of one Portfolio (many to 1).
+An Investment can have multiple Transactions (1 to many).
+Each Transaction is associated with one Investment (many to 1).
+An Investment is related to one or more FinancialProducts (many to many).
+ERD Diagram
+Below is a textual representation of the ERD:
+
+scss
+Copy code
+[Customer]
+    |
+    |---< (CustomerID) --< [Portfolio]
+    |                      |
+    |                      |---< (PortfolioID) --< [Investment]
+    |                                               |
+    |                                               |---< (InvestmentID) --< [Transaction]
+    |
+    [FinancialProduct]
+    |                      |
+    |---< (ProductID) -----|----< [Investment] (InvestmentType)
+Notes:
+Customer and Portfolio have a one-to-many relationship, meaning one customer can have multiple portfolios.
+Portfolio and Investment have a one-to-many relationship, as one portfolio can include multiple investments.
+Investment and Transaction also have a one-to-many relationship, indicating multiple transactions can occur for a single investment.
+Investment and FinancialProduct have a many-to-many relationship. This relationship is realized through the InvestmentType field, which matches the ProductType in FinancialProduct.
+This diagram provides a foundational structure for an Investment Management System. You can expand it by adding additional entities or attributes to capture more specific requirements, such as adding risk assessments, performance metrics, or user authentication details.
